@@ -1,0 +1,78 @@
+Single
+
+#include <xc.h>
+
+// Define the clock frequency (adjust as per your configuration)
+#define _XTAL_FREQ 8000000 // Example for 8 MHz clock
+
+void main(void) 
+{
+    /* Set RA0 as output for the LED */
+    TRISA &= ~(1 << 0); // RA0 as output
+    /* Set RB2 as input for vDD */
+    TRISB |= (1 << 2); // RB2 as input
+
+    /* Main program loop */
+    while(1)
+    {
+        /* Turn on the LED (RA0 high) */
+        LATA |= (1 << 0); // Set RA0 high
+        __delay_ms(500);  // Delay for 500 ms
+        
+        /* Turn off the LED (RA0 low) */
+        LATA &= ~(1 << 0); // Set RA0 low
+        __delay_ms(500);  // Delay for 500 ms
+    } 
+}
+
+Multi
+
+#include <xc.h>
+
+// Define constants for pins and delay
+#define LED_PIN0 0  // RA0
+#define LED_PIN1 1  // RA1
+#define LED_PIN2 2  // RA2
+#define BUTTON_PIN 2     // RB2
+#define DELAY_MS 500     // Delay duration in milliseconds
+#define _XTAL_FREQ 8000000 // Clock frequency for delay calculation
+
+void main(void) 
+{
+    
+        // Set LED pins as output
+    TRISA &= ~(1 << LED_PIN0); // Set RA0 as output
+    TRISA &= ~(1 << LED_PIN1); // Set RA1 as output
+    TRISA &= ~(1 << LED_PIN2); // Set RA2 as output
+    
+    // Set RB2 as input for vDD
+    TRISB |= (1 << BUTTON_PIN); // Set bit for button pin
+
+    // Main program loop
+    while(1) 
+    {
+        // Turn on the LED
+        LATA |= (1 << LED_PIN0); // Set LED pin high
+        __delay_ms(DELAY_MS);   // Delay for 500 ms
+
+        // Turn off the LED
+        LATA &= ~(1 << LED_PIN0); // Set LED pin low
+        __delay_ms(DELAY_MS);   // Delay for another 500 ms
+        
+                // Turn on the LED
+        LATA |= (1 << LED_PIN1); // Set LED pin high
+        __delay_ms(DELAY_MS);   // Delay for 500 ms
+
+        // Turn off the LED
+        LATA &= ~(1 << LED_PIN1); // Set LED pin low
+        __delay_ms(DELAY_MS);   // Delay for another 500 ms
+        
+                // Turn on the LED
+        LATA |= (1 << LED_PIN2); // Set LED pin high
+        __delay_ms(DELAY_MS);   // Delay for 500 ms
+
+        // Turn off the LED
+        LATA &= ~(1 << LED_PIN2); // Set LED pin low
+        __delay_ms(DELAY_MS);   // Delay for another 500 ms
+    } 
+}
