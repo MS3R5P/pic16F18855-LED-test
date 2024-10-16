@@ -1,3 +1,32 @@
+Single
+
+#include <xc.h>
+
+// Define the clock frequency (adjust as per your configuration)
+#define _XTAL_FREQ 8000000 // Example for 8 MHz clock
+
+void main(void) 
+{
+    /* Set RA0 as output for the LED */
+    TRISA &= ~(1 << 0); // RA0 as output
+    /* Set RB2 as input for vDD */
+    TRISB |= (1 << 2); // RB2 as input
+
+    /* Main program loop */
+    while(1)
+    {
+        /* Turn on the LED (RA0 high) */
+        LATA |= (1 << 0); // Set RA0 high
+        __delay_ms(500);  // Delay for 500 ms
+        
+        /* Turn off the LED (RA0 low) */
+        LATA &= ~(1 << 0); // Set RA0 low
+        __delay_ms(500);  // Delay for 500 ms
+    } 
+}
+
+Multi
+
 #include <xc.h>
 
 // Define constants for pins and delay
